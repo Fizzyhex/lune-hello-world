@@ -71,7 +71,7 @@ local function userCreation()
 	local userType
 	
 	while true do
-		userType = stdio.prompt("text", `Enter a user type ({table.concat(USER_TYPES, ", ")}): `)
+		userType = stdio.prompt("text", `Enter a user type ({table.concat(USER_TYPES, ", ")}): `):lower()
 	
 		if table.find(USER_TYPES, userType) then
 			break
@@ -98,7 +98,7 @@ local function displayUsers()
 end
 
 while true do
-	local action = stdio.prompt("text", "What would you like to do? (create_user, display_users, exit): ")
+	local action = stdio.prompt("text", "What would you like to do? (create_user, display_users, exit): "):lower()
 
 	if action == "create_user" then
 		userCreation()
