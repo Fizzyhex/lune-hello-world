@@ -30,21 +30,28 @@ local function canPinMessages(userType: UserType)
 	return userType == "nitro"
 end
 
+-- please don't use this - use something like https://gist.github.com/jrus/3197011 instead
+local guidClock = math.random(0, 0xf)
+local function generateGuid()
+	guidClock += 1
+	return `{tostring(os.clock()):sub(-4):format("%x")}{string.format("%x", guidClock)}`
+end
+
 local users: { User } = {
 	{
-		id = 1,
+		id = generateGuid(),
 		username = "john_unverified",
 		userType = "unverified"
 	},
 	
 	{
-		id = 2,
+		id = generateGuid(),
 		username = "jane_unverified",
 		userType = "verified"
 	},
 	
 	{
-		id = 3,
+		id = generateGuid(),
 		username = "graggle_nitro",
 		userType = "nitro"
 	}
@@ -52,6 +59,7 @@ local users: { User } = {
 
 local function displayUser(user: User)
 	print(`👤 Name: {user.username}`)
+	print(`🆔 ID: {user.id}`)
 	print(`📋 User type: {user.userType}`)
 	print(`- Can send messages? {canSendMessages(user.userType)}`)
 	print(`- Can pin messages? {canPinMessages(user.userType)}`)
@@ -73,7 +81,7 @@ local function userCreation()
 	end
 
 	local newUser: User = {
-		id = #users + 1,
+		id = generateGuid(),
 		username = username,
 		userType = userType,
 	}
