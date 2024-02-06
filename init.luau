@@ -1,12 +1,14 @@
+--!strict
+
 local stdio = require("@lune/stdio")
 
-type UserType = "unverified" | "verified" | "nitro"
-
 type User = {
-	id: number,
+	id: string,
 	username: string,
 	userType: UserType,
 }
+
+type UserType = "unverified" | "verified" | "nitro"
 
 local USER_TYPES: { UserType } = { "unverified", "verified", "nitro" }
 
