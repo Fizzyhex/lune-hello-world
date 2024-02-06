@@ -1,4 +1,4 @@
-local stdio = require("@lune/stdio.luau")
+local stdio = require("@lune/stdio")
 
 type UserType = "unverified" | "verified" | "nitro"
 
